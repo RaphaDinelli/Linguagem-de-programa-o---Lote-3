@@ -26,29 +26,32 @@ import java.util.Scanner;
  * Data da compilação: 05/08/2016
 */
 
-class Main {
-  public static void limpaTela(){
-  	for(int i = 0; i < 100; i++){
-       System.out.println("");
-  	}
-  }
-  public static void menu(){
-  	int opcao;
-  	String[] opcoes = {"Carregar notas","Retirar notas","Estatística","Fim"};
-  	do{
-	  	System.out.printf(" __________________________MENU__________________________\n\n");
-	  	for(int i=0; i < opcoes.length; i++){
-	  		System.out.printf("%2d - %s\n", i+1, opcoes[i]);
-	  	}
-	  	System.out.printf("\n%10s", "Digite a opção desejada: ");
-	  	Scanner inOpcao = new Scanner(System.in);
-	  	opcao = inOpcao.nextInt();
+import java.util.Scanner;
 
-   }
-   while(opcao != 4);
-  }
-  
-  public static void main(String[] args) {
-  	menu();
-  }
+/* Receba 2 valores inteiros. 
+ * Receba um número. Calcule e mostre a série 1 + 1/2 + 1/3 + ... + 1/N.
+ * @Autor: Raphael Dinelli
+ * Data da compilação: 06/08/2016
+*/
+
+class Main{
+	static void menu(){
+		String[] opcoes = {"1 - Carregar notas", "2 - Retirar notas","3 - Estatística","9 - Fim"};
+		int opcao;
+		System.out.println("__________Menu__________\n\n");
+		do{
+			for(String i: opcoes){
+				System.out.println(i);
+			}
+		System.out.println("\nEscolha a opção desejada: ");
+		Scanner inOpcao = new Scanner(System.in);
+		opcao = inOpcao.nextInt();
+		}
+		while(opcao != 9);
+		System.out.println("\nSISTEMA FINALIZADO!!");
+	}
+	
+	public static void main(String[] args){
+		menu();
+	}
 }
