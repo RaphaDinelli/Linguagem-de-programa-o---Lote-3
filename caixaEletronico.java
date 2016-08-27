@@ -1,4 +1,3 @@
-import java.util.Scanner;
 /* CAIXA ELETRÔNICO
  * 1. Criar um menu de opções:
  * Menu Principal
@@ -28,26 +27,74 @@ import java.util.Scanner;
 
 import java.util.Scanner;
 
-/* Receba 2 valores inteiros. 
- * Receba um número. Calcule e mostre a série 1 + 1/2 + 1/3 + ... + 1/N.
- * @Autor: Raphael Dinelli
- * Data da compilação: 06/08/2016
-*/
-
 class Main{
+    public static int[][] notas = new int[6][6];
+    public static int quantidadeDeSaquesDisponiveis = 100;
+    public static int saldoDoCaixa = 0;
+    
+    static void limpaTela(){
+    	for(int i=0; i < 300; i++){
+    		System.out.println("");
+    	}
+    }
+	
+	static void carregarNotas(int [][]matriz){
+		int quantidadeDeNotas;
+		notas[0][0] = 100;
+		notas[0][1] = 50;
+		notas[0][2] = 20;
+		notas[0][3] = 10;
+		notas[0][4] = 5;
+		notas[0][5] = 2;
+		limpaTela();
+		System.out.println("__________CARREGAR NOTAS__________\n\n");
+		for(int i=0; i< matriz.length; i++){
+			System.out.println("\nDigite a quantidade de notas de R$" + matriz[0][i]);
+			Scanner inQuantidadeDeNotas = new Scanner(System.in);
+			quantidadeDeNotas = inQuantidadeDeNotas.nextInt();
+			if(quantidadeDeNotas < 0){
+				System.out.println("\nValor digitado inválido!");
+				menu();
+			}
+			else{
+				matriz[1][i] = quantidadeDeNotas;
+			}
+		}
+		System.out.println("");
+		for(int x=0; x< matriz.length; x++){
+			System.out.printf("Quantidade de notas de RS%3d: %5d\n", matriz[0][x], matriz[1][x]);
+		}
+		calcularSaldo();
+		System.out.println("\n\tSALDO DO CAIXA: R$" + saldoDoCaixa);
+		System.out.println("\nPressione qualquer tecla e enter para finalizar.");
+		Scanner inFinalizar = new Scanner(System.in);
+		String finalizar = inFinalizar.next();
+	}
+	static void calcularSaldo(){
+		for(int x= 0; x < notas.length; x++){
+			saldoDoCaixa += notas[0][x] * notas[1][x]; 
+		}
+	}
 	static void menu(){
 		String[] opcoes = {"1 - Carregar notas", "2 - Retirar notas","3 - Estatística","9 - Fim"};
 		int opcao;
-		System.out.println("__________Menu__________\n\n");
 		do{
+			limpaTela();
+			System.out.println("____________MENU____________\n\n");
 			for(String i: opcoes){
 				System.out.println(i);
 			}
 		System.out.println("\nEscolha a opção desejada: ");
 		Scanner inOpcao = new Scanner(System.in);
 		opcao = inOpcao.nextInt();
+		switch(opcao){
+			case 1:
+				carregarNotas(notas);
+				break;
+		}
 		}
 		while(opcao != 9);
+		limpaTela();
 		System.out.println("\nSISTEMA FINALIZADO!!");
 	}
 	
